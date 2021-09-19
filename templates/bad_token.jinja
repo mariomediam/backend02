@@ -1,9 +1,7 @@
-{% extends "base.jinja" %}
-{% block titulo %}Error 😒 {% endblock %} | Tareas Flask
-{% block informacion %}
-    <div class="row bg-dark">
-        <div class="bg-light" style="width:60%">
-            <p>Token incorecta</p>
-        </div>
-    </div>
-{% endblock %}
+{% extends 'base.jinja' %} {% block informacion %}
+<div class="row bg-dark" style="display: flex; justify-content: center">
+  <div class="bg-light text-center" style="width: 60%">
+    <p>Token incorrecta 😢</p>
+  </div>
+</div>
+{% endblock %} {% block titulo%}Error 😭{% endblock%}
