@@ -36,6 +36,13 @@ class TareasController(Resource):
         required=True,
         location='json'
     )
+    serializador.add_argument(
+            'imagen',
+            location='json',
+            required=False,
+            help='Falta imagen',
+            type=str
+        )
 
     @jwt_required()
     def post(self):
@@ -47,6 +54,10 @@ class TareasController(Resource):
             nuevaTarea.tareaTags = data.get('tags')
             nuevaTarea.tareaTitulo = data.get('titulo')
             nuevaTarea.usuario = current_identity.get('usuarioId')
+            if data.get('imagen'):
+                nuevaTarea.tareaImagen = data.get('imagen')
+            else:
+                nuevaTarea.tareaImagen = None
 
             base_de_datos.session.add(nuevaTarea)
             base_de_datos.session.commit()
@@ -61,6 +72,7 @@ class TareasController(Resource):
                     "tareaTitulo": nuevaTarea.tareaTitulo,
                     "tareaFechaCreacion": str(nuevaTarea.tareaFechaCreacion),
                     "usuario": nuevaTarea.usuario,
+                    "tareaImagen": nuevaTarea.tareaImagen,
                 }
             }, 201
         except Exception as e:

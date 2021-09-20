@@ -230,10 +230,10 @@ def eliminar_imagen_servidor(nombre):
 def subir_imagen_cd():
     imagen = request.files.get("imagen")
     print(imagen)
-    resultado = upload(imagen)
+    resultado = upload(imagen)   
     return {
         "message":"Archivo subido exitosamente",
-        "content":resultado
+        "content":resultado.get("public_id")
     }
 
 @app.route("/eliminar-imagen-cloudinary/<string:id>", methods=["DELETE"])
